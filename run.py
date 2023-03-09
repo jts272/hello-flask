@@ -3,7 +3,9 @@
 import os
 
 # import the 'Flask' class:
-from flask import Flask
+# Add the render_template function from Flask to render full HTML files
+# from the root 'templates' folder:
+from flask import Flask, render_template
 
 # Create an instance of this class:
 # The first arg is the name of the application's module - our package.
@@ -19,7 +21,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Hello, world!"
+    # Text or text in HTML tags can be returned for the browser to
+    # render:
+    # return "<h1>Hello,</h1> <h2>world!</h2>"
+
+    # Instead of returning text typed in above, we want to render the
+    # full template supplied:
+    # Flask is looking for a root directory named 'templates'.
+    return render_template("index.html")
 
 
 # Get the application running:
