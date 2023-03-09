@@ -14,11 +14,10 @@ from flask import Flask, render_template
 # Flask needs this to find templates and static files.
 app = Flask(__name__)
 
+
 # Route decorator to tell Flask what URL triggers the following function
 # When we browse the root directory '/', Flask triggers the following
 # function.
-
-
 @app.route("/")
 def index():
     # Text or text in HTML tags can be returned for the browser to
@@ -29,6 +28,18 @@ def index():
     # full template supplied:
     # Flask is looking for a root directory named 'templates'.
     return render_template("index.html")
+
+
+# This route decorator binds the function or 'view' to the filepath
+# provided:
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 
 # Get the application running:
