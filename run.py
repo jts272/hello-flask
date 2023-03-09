@@ -42,6 +42,11 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route("/careers")
+def careers():
+    return render_template("careers.html")
+
+
 # Get the application running:
 # '__main__' is the name of the default Module in Python. The if clause
 # runs the app with the following arguments.
