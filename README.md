@@ -42,3 +42,19 @@ it looks like a regular html file with the Jinja templates interspersed.
 ```
 
 Note 'content' in the Jinja template can be named anything.
+
+### Using StartBootstrap source files
+
+In this project, [Clean Blog 5.0.10](https://github.com/startbootstrap/startbootstrap-clean-blog/tree/v5.0.10)
+is used.
+
+By examining the source `index.html`, we can see which scripts and stylesheets
+are linked. From here, we simply convert these relative links to the Jinja
+`{{url_for()}}` format.
+
+By copying the entire content inside the `<body>` tags of the source file to our
+project `base.html`, we can then spin off relevant sections to their
+corresponding html template files.
+
+Don't forget that even inline style background image sources must be updated to
+follow the Jinja method.
