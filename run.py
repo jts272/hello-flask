@@ -34,17 +34,23 @@ def index():
 # provided:
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    # Additional argument provided to the return function. This is a
+    # user-defined variable that is accessed with the double curly
+    # braces syntax in the html pages, to populate the page title.
+    #
+    # This is an example of setting data on the server side, and viewing
+    # it on the client side.
+    return render_template("about.html", page_title="About")
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    return render_template("contact.html", page_title="Contact")
 
 
 @app.route("/careers")
 def careers():
-    return render_template("careers.html")
+    return render_template("careers.html", page_title="Careers")
 
 
 # Get the application running:
