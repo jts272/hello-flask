@@ -40,7 +40,8 @@ def about():
     #
     # This is an example of setting data on the server side, and viewing
     # it on the client side.
-    return render_template("about.html", page_title="About")
+    return render_template("about.html", page_title="About",
+                           list_of_numbers=[1, 2, 3])
 
 
 @app.route("/contact")

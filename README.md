@@ -58,3 +58,20 @@ corresponding html template files.
 
 Don't forget that even inline style background image sources must be updated to
 follow the Jinja method.
+
+### for loops in templates
+
+If a list is supplied as an argument for a view function, it can be printed
+directly, or even iterated through.
+
+Syntax:
+
+```
+{% for 'variable' in 'list' %}
+<p>{{'variable'}}</p>
+{% endfor %}
+```
+
+Notice the different use of statement and expression syntax `{{}}` and `{%%}`
+
+This will create new `<p>` tags in html, each with the content from the list.
