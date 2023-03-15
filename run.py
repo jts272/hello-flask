@@ -49,7 +49,7 @@ def about():
     data = []
     # Start a 'with' block for Python to read the JSON file.
     # The file path, read-only mode and new variable name are declared:
-    with open("data/company.json", "r") as json_data:
+    with open("data/company.json", "r", encoding="utf-8") as json_data:
         # Create var to hold the JSON content.
         # This is also supplied as an argument to the return statement,
         # as a variable named 'company'.
