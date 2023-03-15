@@ -2,6 +2,10 @@
 # get the app running:
 import os
 
+# Required import for handling JSON data, such as in the company about
+# details
+import json
+
 # import the 'Flask' class:
 # Add the render_template function from Flask to render full HTML files
 # from the root 'templates' folder:
@@ -40,8 +44,18 @@ def about():
     #
     # This is an example of setting data on the server side, and viewing
     # it on the client side.
-    return render_template("about.html", page_title="About",
-                           list_of_numbers=[1, 2, 3])
+    #
+    # Initialize an empty list for the company JSON data:
+    data = []
+    # Start a 'with' block for Python to read the JSON file.
+    # The file path, read-only mode and new variable name are declared:
+    with open("data/company.json", "r") as json_data:
+        # Create var to hold the JSON content.
+        # This is also supplied as an argument to the return statement,
+        # as a variable named 'company'.
+        data = json.load(json_data)
+
+    return render_template("about.html", page_title="About", company=data)
 
 
 @app.route("/contact")

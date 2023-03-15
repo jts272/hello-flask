@@ -75,3 +75,11 @@ Syntax:
 Notice the different use of statement and expression syntax `{{}}` and `{%%}`
 
 This will create new `<p>` tags in html, each with the content from the list.
+
+### Using JSON in Python
+
+`import json`
+
+Example of accessing the 'name' property of the second object in a JSON file:
+
+`{{json_file[1]["name"]}}`
