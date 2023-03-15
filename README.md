@@ -83,3 +83,17 @@ This will create new `<p>` tags in html, each with the content from the list.
 Example of accessing the 'name' property of the second object in a JSON file:
 
 `{{json_file[1]["name"]}}`
+
+### Using JSON data in a for loop in HTML
+
+The `'iterable'` is supplied as an argument in the view return statement.
+
+```
+{% for 'object' in 'iterable' %}
+
+  <h3>{{object.name}}</h3>
+  <p>{{object.description}}</p>
+  <img src="{{object.image_path}} alt="" class="" />
+
+{% endfor %}
+```
