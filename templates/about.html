@@ -16,9 +16,25 @@
 <!-- for loop statement -->
 {% for member in company %}
 
+<!-- Jinja creates a 'loop' object for us from the for statement -->
+
+<!-- 
+  {{loop.index}} would insert the index of the loop into the page, starting from
+  1. We can use this expression in the <h3> tags for each member. Note the full
+  stop and space after the template expression.
+-->
+
 <div class="row featurette">
+  <!--
+  Use logic to alternate the display method of text and images between odd and
+  even numbered company members:
+  -->
+
+  <!-- For odd row: -->
+  {% if loop.index % 2 != 0 %}
+
   <div class="col-md-7">
-    <h3>{{member.name}}</h3>
+    <h3>{{loop.index}}. {{member.name}}</h3>
     <p>{{member.description}}</p>
   </div>
   <div class="col-md-5">
@@ -28,6 +44,30 @@
       alt=""
       class="featurette-image image-responsive" />
   </div>
+
+  <!-- Else for even rows: -->
+
+  {% else %}
+
+  <div class="col-md-5">
+    <!-- Switch div order for image and text -->
+    <img
+      src="{{member.image_source}}"
+      alt=""
+      class="featurette-image image-responsive" />
+  </div>
+  <div class="col-md-7">
+    <h3>{{loop.index}}. {{member.name}}</h3>
+    <p>{{member.description}}</p>
+  </div>
+
+  {% endif %}
 </div>
+
+<!-- Add condition so that the <hr> will not display on last pass of loop -->
+
+{% if loop.index != loop.length %}
+
 <hr class="featurette-divider" />
-{% endfor %} {% endblock %}
+
+{% endif %} {% endfor %} {% endblock %}
