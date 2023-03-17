@@ -78,8 +78,12 @@ def about_member(member_name):
     # this function:
     return render_template("member.html", member=member)
 
+# Flask's views all handle GET events by default. Other methods must be
+# specified in the route arguments. This allows the contact form to use
+# other methods instead of getting a 405 error.
 
-@app.route("/contact")
+
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
     return render_template("contact.html", page_title="Contact")
 
