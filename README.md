@@ -97,3 +97,22 @@ The `'iterable'` is supplied as an argument in the view return statement.
 
 {% endfor %}
 ```
+
+### Working with forms in Flask
+
+In this example code, the html for the form is used from the Clean Blog template
+from StartBootstrap. This is designed to work with the supplied JavaScript from
+the template's source files. However, in this application, we are using our own
+custom methods to handle the form process. In general:
+
+#### HTML
+
+1. Copy the form html from the template (Clean Blog)
+2. Add the "POST" method to the form
+3. Add "name" attributes to the input elements
+
+#### Python
+
+4. Add `methods=["GET", "POST"]` to the view's route decorator
+5. Import `request` from `flask`
+6. We can now access the `request.form` object

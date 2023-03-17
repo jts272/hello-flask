@@ -9,7 +9,8 @@ import json
 # import the 'Flask' class:
 # Add the render_template function from Flask to render full HTML files
 # from the root 'templates' folder:
-from flask import Flask, render_template
+# request library used to handle form processing:
+from flask import Flask, render_template, request
 
 # Create an instance of this class:
 # The first arg is the name of the application's module - our package.
@@ -85,6 +86,19 @@ def about_member(member_name):
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
+    # Test message for posting form:
+    # Results appear in the python terminal from running run.py
+    if request.method == "POST":
+        print("Form posted!")
+        # When using the request method of POST, a form object is
+        # attached:
+        print(request.form)
+        # Two different methods for accessing some form data:
+        print(request.form.get("name"))
+        print(request.form["email"])
+        # In the event of the key not being present:
+        # get("") = none
+        # [""] = throw
     return render_template("contact.html", page_title="Contact")
 
 
