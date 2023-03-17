@@ -58,6 +58,25 @@ def about():
     return render_template("about.html", page_title="About", company=data)
 
 
+# The angled brackets look for data in the url path to pass to the view
+# below.
+@app.route("/about/<member_name>")
+# Create the view, which takes the member_name argument from above:
+def about_member(member_name):
+    # Create empty object to store the data we want to display later:
+    member = {}
+    with open("data/company.json", "r", encoding="utf-8") as json_data:
+        data = json.load(json_data)
+        # Iterate through the data array we have just created:
+        for obj in data:
+            if obj["url"] == member_name:
+                # Give the member object the content of the current loop
+                # iteration:
+                member = obj
+
+    return "<h1>" + member["name"] + "</h1>"
+
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html", page_title="Contact")
