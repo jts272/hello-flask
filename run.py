@@ -74,7 +74,9 @@ def about_member(member_name):
                 # iteration:
                 member = obj
 
-    return "<h1>" + member["name"] + "</h1>"
+    # Render the specified template and give it the member variable from
+    # this function:
+    return render_template("member.html", member=member)
 
 
 @app.route("/contact")
