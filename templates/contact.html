@@ -5,6 +5,20 @@
 
 <div class="row">
   <div class="col-lg-8 col-md-10 mx-auto">
+    <!-- Get the messages from the backend and store in the 'messages' var -->
+
+    {% with messages = get_flashed_messages() %}
+    <!-- If we have messages available: -->
+    {% if messages %}
+    <!-- Create the div to display the messages that can be styled later -->
+    <ul class="flashes">
+      <!--  Create loop in case of multiple messages -->
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+
     <p>
       Want to get in touch? Fill out the form below to send me a message and I
       will get back to you as soon as possible!
