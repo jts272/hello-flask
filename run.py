@@ -10,7 +10,13 @@ import json
 # Add the render_template function from Flask to render full HTML files
 # from the root 'templates' folder:
 # request library used to handle form processing:
-from flask import Flask, render_template, request
+# flash will display non-permanent messages to the user
+from flask import Flask, render_template, request, flash
+
+# import env, only if the system can find our 'env.py' file:
+if os.path.exists("env.py"):
+    import env
+    # This creates the '__pycache__' dir, which can be ignored by Git.
 
 # Create an instance of this class:
 # The first arg is the name of the application's module - our package.
@@ -18,6 +24,9 @@ from flask import Flask, render_template, request
 # '__name__' is used.
 # Flask needs this to find templates and static files.
 app = Flask(__name__)
+
+# Get the hidden key after app instantiation:
+app.secret_key = os.environ.get("SECRET_KEY")
 
 
 # Route decorator to tell Flask what URL triggers the following function
@@ -99,6 +108,10 @@ def contact():
         # In the event of the key not being present:
         # get("") = none
         # [""] = throw
+
+        # Call the flash() function to display the flash message:
+        flash("Thanks {}, we have received your message!".format(
+            request.form.get("name")))
     return render_template("contact.html", page_title="Contact")
 
 
