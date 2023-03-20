@@ -116,3 +116,35 @@ custom methods to handle the form process. In general:
 4. Add `methods=["GET", "POST"]` to the view's route decorator
 5. Import `request` from `flask`
 6. We can now access the `request.form` object
+
+### Heroku CLI setup
+
+1. Create new App on Heroku
+2. `npm install -g heroku`
+3. `heroku login`
+
+- This will open a browser verification link outside of the CLI when MFA is
+  enabled.
+
+4. `heroku apps` will list apps for the logged in user
+
+- Rename apps with `heroku apps:rename current-app-name --app new-app-name`
+
+5. Select `Open app` on the Heroku dashboard to see the Heroku URL. This can be
+   copied directly from the Heroku app 'Settings' tab.
+
+#### Pushing to Heroku
+
+6. Check `git status` and `git remote -v`
+
+- Expect status to be up to date and for only the `origin` branch to be
+  present in the verbose remote log.
+
+7. `git remote add heroku https://git.heroku.com/your-app-name.git`
+8. Confirm new remote status with `git remote -v`
+9. `git push -u heroku main`
+
+- This will fail as Heroku cannot detect a default language.
+
+10. `pip3 freeze --local > requirements.txt` This creates the `requirements.txt`
+    so that Heroku can see the Python dependencies.
