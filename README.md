@@ -148,3 +148,8 @@ custom methods to handle the form process. In general:
 
 10. `pip3 freeze --local > requirements.txt` This creates the `requirements.txt`
     so that Heroku can see the Python dependencies.
+11. The `requirements.txt` in the root directory shows Heroku that this is a
+    Python application. `git push -u heroku main` will now deploy the application
+    to Heroku with the necessary dependencies (Python, Flask etc.) The app still
+    requires a `Procfile` to fully deploy without error.
+12. Create the Procfile for Heroku with `echo web: python run.py > Procfile`
