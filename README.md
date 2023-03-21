@@ -153,3 +153,35 @@ custom methods to handle the form process. In general:
     to Heroku with the necessary dependencies (Python, Flask etc.) The app still
     requires a `Procfile` to fully deploy without error.
 12. Create the Procfile for Heroku with `echo web: python run.py > Procfile`
+
+- `git push` will push to both remotes and the Heroku app should function.
+
+#### Environment Variables
+
+13. The site is displaying on Heroku, but `env.py` is unavailable as it is an
+    untracked file. This means that the app has no access to the secret keys and
+    the Flask flash function will fail. The application logs on Heroku will
+    confirm this.
+14. Add the following Config Vars in the application settings on the Heroku App
+    Dashboard:
+
+    ```
+    IP: 0.0.0.0
+    PORT: 5000
+    SECRET_KEY: your_secret_key
+    ```
+
+    - The `IP` and `PORT` data comes from the `app.run()` function in `run.py`.
+      The `SECRET_KEY` comes from the `env.py` we have created.
+
+15. Logs can be viewed on Heroku to confirm the application is running. Dynos
+    can be reset also.
+
+#### Deploying from GitHub
+
+16. `git remote rm heroku`
+17. `git push --set-upstream origin main`
+18. On Heroku, connect the GitHub repo, enable automatic deployments and select
+    to deploy from the `main` branch.
+    - Ensure that the GitHub repo is up-to-date and contains the `Procfile` so
+      Heroku can discover the process type and build successfully.
